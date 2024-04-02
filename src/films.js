@@ -90,12 +90,25 @@ function hoursToMinutes(array) {
   let newArray = array.map((e, index) => {
     return { ...e, duration: durationMinutes[index] };
   });
-  console.log('EXERCISE 7 ->', newArray);
+  // console.log('EXERCISE 7 ->', newArray);
   return newArray;
 }
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {}
+function bestFilmOfYear(array, year) {
+  let filteredArray = array.filter((movie) => movie.year === year);
+  let bestScore = 0;
+  filteredArray.forEach((movie, index) => {
+    if (movie.score >= bestScore) {
+      bestScore = movie.score;
+    }
+  });
+  let result = filteredArray.filter(
+    (movie) => movie.score === bestScore
+  );
+  // console.log('EXERCISE 8 ->', result);
+  return result;
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
