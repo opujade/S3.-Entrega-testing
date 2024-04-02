@@ -74,20 +74,23 @@ function moviesAverageByCategory(array, genre) {
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes(array) {
-  let durationMinutes = 0;
-  let newArray = array;
-  newArray.forEach((movie) => {
-    let aux = [];
-    aux = movie.duration.split(' ');
-    aux[0] = parseInt(aux[0]) * 60;
-    if (aux[1]) {
-      durationMinutes = parseInt(aux[0]) + parseInt(aux[1]);
-    } else {
-      durationMinutes = parseInt(aux[0]);
+  let durationMinutes = [];
+  let aux = [];
+  array.forEach((movie, index) => {
+    if (typeof movie.duration == 'string') {
+      aux[index] = movie.duration.split(' ');
+      if (aux[index][1]) {
+        durationMinutes[index] =
+          parseInt(aux[index][0]) * 60 + parseInt(aux[index][1]);
+      } else {
+        durationMinutes[index] = parseInt(aux[index][0]) * 60;
+      }
     }
-    movie.duration = parseInt(durationMinutes);
   });
-  console.log('EXERCICE 7 ->', newArray);
+  let newArray = array.map((e, index) => {
+    return { ...e, duration: durationMinutes[index] };
+  });
+  console.log('EXERCISE 7 ->', newArray);
   return newArray;
 }
 
