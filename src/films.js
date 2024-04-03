@@ -79,7 +79,6 @@ function hoursToMinutes(array) {
 function bestFilmOfYear(array, year) {
   let filteredArray = array.filter((movie) => movie.year === year);
   let bestScore = 0;
-  // sort puede funcionar
   filteredArray.forEach((movie) => {
     if (movie.score >= bestScore) {
       bestScore = movie.score;
